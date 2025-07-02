@@ -6,7 +6,7 @@
 /*   By: lbrylins <lbrylins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 18:17:43 by lbrylins          #+#    #+#             */
-/*   Updated: 2025/06/26 21:32:45 by lbrylins         ###   ########.fr       */
+/*   Updated: 2025/07/02 17:03:35 by lbrylins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -25,7 +25,7 @@ void	sort_three(t_stack *stack)
 		rra(stack, true);
 	if (stack->stack_a[0] > stack->stack_a[1])
 		sa(stack, true);
-} 
+}
 
 void	sort_4_5(t_stack *stack)
 {

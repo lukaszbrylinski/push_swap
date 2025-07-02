@@ -6,7 +6,7 @@
 /*   By: lbrylins <lbrylins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/04/10 18:06:56 by lbrylins          #+#    #+#             */
-/*   Updated: 2025/06/26 20:39:00 by lbrylins         ###   ########.fr       */
+/*   Updated: 2025/07/02 15:17:07 by lbrylins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -15,7 +15,7 @@
 
 # include <stdbool.h>
 # include <limits.h>
-//# include "libft.h"
+# include "./libft.h"
 
 # define ERROR_MESSAGE \
 	"Error\n"
@@ -37,6 +37,12 @@ int		strlen_ft(const char *str, char seperator, int start);
 int		count_words(const char *str, char seperator);
 char	**cleanup(char **str_arr, int word_num);
 char	**ft_split(char const *s, char c);
-//void	ft_lstadd_front(stack **lst, stack *new);
+
+//push
+void	pb(t_stack *stack);
+void	pa(t_stack *stack);
+//rotate
+void	ra(t_stack *stack, bool check);
+void	rra(t_stack *stack, bool check);
 
 #endif
