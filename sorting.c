@@ -6,7 +6,7 @@
 /*   By: lbrylins <lbrylins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/06/26 18:17:43 by lbrylins          #+#    #+#             */
-/*   Updated: 2025/07/02 17:03:35 by lbrylins         ###   ########.fr       */
+/*   Updated: 2025/07/04 18:59:40 by lbrylins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -37,7 +37,7 @@ void	sort_4_5(t_stack *stack)
 	i = 0;
 	while (i++ < size - 3)
 	{
-		min = find_lowest(stack->stack_a, stack->size_a);
+		min = find_smallest(stack->stack_a, stack->size_a);
 		while (stack->stack_a[0] != min)
 		{
 			if (find_position(stack->stack_a,
@@ -88,11 +88,12 @@ void	push_swap(t_stack *stack)
 	stack->size_b = 0;
 	if (!stack->stack_b)
 	{
-		//free stack a do zrobienia
+		free(stack->stack_a);
 		return ;
 	}
 	if (stack->size_a == 4 || stack->size_a == 5)
 		sort_4_5(stack);
 	else
 		radix(stack);
+	free(stack->stack_b);
 }

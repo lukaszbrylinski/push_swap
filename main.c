@@ -6,7 +6,7 @@
 /*   By: lbrylins <lbrylins@student.42.fr>          +#+  +:+       +#+        */
 /*                                                +#+#+#+#+#+   +#+           */
 /*   Created: 2025/07/01 22:44:53 by lbrylins          #+#    #+#             */
-/*   Updated: 2025/07/02 17:11:04 by lbrylins         ###   ########.fr       */
+/*   Updated: 2025/07/04 19:34:41 by lbrylins         ###   ########.fr       */
 /*                                                                            */
 /* ************************************************************************** */
 
@@ -18,22 +18,34 @@ int	p_error(void)
 	exit (1);
 }
 
-int	free_and_close(t_stack *stack, char	**arr)
+void	free_stack(t_stack *stack)
+{
+	if (!stack)
+		return ;
+	if (stack->stack_a)
+		free(stack->stack_a);
+	free(stack);
+}
+
+void	free_arr(char **arr)
 {
 	int	i;
 
 	i = 0;
-	if (stack)
-		free(stack);
-	if (arr)
+	if (!arr)
+		return ;
+	while (arr[i])
 	{
-		while (arr[i])
-		{
-			free(arr[i]);
-			i++;
-		}
-		free(arr);
+		free(arr[i]);
+		i++;
 	}
+	free(arr);
+}
+
+void	free_and_close(t_stack *stack, char **arr)
+{
+	free_stack(stack);
+	free_arr(arr);
 	p_error();
 }
 
@@ -43,17 +55,19 @@ int	main(int argc, char **argv)
 	char	**arr;
 
 	stack = malloc(sizeof(*stack));
-	if (argc == 1)
+	if (!stack)
+		return (1);
+	stack->stack_a = NULL;
+	if (argc == 1 || !argv[1])
 		return (p_error());
-	else if (argc == 2)
-		arr = ft_split(argv[1], ' ');
-	else
-		arr = get_args(argc, argv);
-	if (!is_valid(arr))
+	arr = parse_arr(argc, argv);
+	if (!arr || !is_valid(arr))
 		free_and_close(stack, arr);
 	stack->size_a = get_stack_size(arr);
 	stack->stack_a = fill_stack(arr, stack->size_a);
 	free_arr(arr);
+	if (!stack->stack_a)
+		free_and_close(stack, NULL);
 	if (!issorted(stack))
 	{
 		if (stack->size_a <= 3)
@@ -61,6 +75,5 @@ int	main(int argc, char **argv)
 		else
 			push_swap(stack);
 	}
-	free_stack(stack);
-	return (0);
+	return (free_stack(stack), 0);
 }

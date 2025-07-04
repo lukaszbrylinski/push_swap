@@ -8,7 +8,17 @@ CFLAGS = -Wall -Wextra -Werror -I includes -I libft
 NAME = push_swap
 
 # Source Files (all .c files in the current directory)
-SRCS = $(wildcard src/*.c)
+SRCS = algorithm_utils.c \
+		main.c \
+		parsing.c \
+		push.c \
+		rotate.c \
+		rotate2.c \
+		sorting.c \
+		swap.c \
+		utils.c \
+		printf.c \
+		printf_utils.c
 
 # Object Files
 OBJS = $(SRCS:.c=.o)
